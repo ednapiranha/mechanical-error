@@ -12,7 +12,8 @@ define(['jquery'],
   var loadLocation = function(location) {
     localStorage.setItem('mechanicalError-location', location);
     scene.addClass('on');
-    console.log(location)
+    land.find('.house-prop, .tree-prop').remove();
+
     setTimeout(function() {
       if (location === 'tree1' || location === 'tree2' || location === 'tree3') {
         currentLocation = 'tree';
@@ -24,6 +25,11 @@ define(['jquery'],
         land
           .removeClass()
           .addClass('house');
+
+        var bed = localStorage.getItem('mechanicalError-bed') || 'bed1';
+        var bedEl = $('<div class="house-prop bed ' + bed + '"></div>');
+
+        land.append(bedEl);
       } else {
         currentLocation = 'all';
         land.removeClass();
