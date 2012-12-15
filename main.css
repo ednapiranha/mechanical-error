@@ -1,0 +1,141 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Main styles */
+#game-wrapper {
+    background-image: url(/images/land.jpg);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: relative;
+}
+
+#game-wrapper, #game-area {
+    height: 480px;
+    width: 320px;
+}
+
+#game-area {
+    background-image: url(images/land.jpg);
+    background-repeat: no-repeat;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+#robot-bev {
+    background-image: url(images/robot-bev.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 43px;
+    position: absolute;
+    width: 43px;
+}
+
+#robot-bev:hover {
+    background-position: -42px;
+}
+
+.prop {
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.tree1 {
+    background-image: url(images/tree1.png);
+    height: 85px;
+    left: 50px;
+    top: 200px;
+    width: 84px;
+}
+
+.tree2 {
+    background-image: url(images/tree2.png);
+    height: 67px;
+    left: 130px;
+    top: 275px;
+    width: 72px;
+}
+
+.tree3 {
+    background-image: url(images/tree3.png);
+    height: 67px;
+    left: 150px;
+    top: 195px;
+    width:67px;
+}
+
+@-webkit-keyframes cloud {
+    from { left: -165px; }
+    to { left: 500px; }
+}
+
+@-moz-keyframes cloud {
+    from { left: -165px; }
+    to { left: 500px; }
+}
+
+.cloud1 {
+    -webkit-animation: cloud 155s ease-in infinite;
+    -moz-animation: cloud 155s ease-in infinite;
+    background-image: url(images/cloud1.png);
+    height: 80px;
+    left: -165px;
+    top: 300px;
+    width: 160px;
+}
+
+.cloud2 {
+    -webkit-animation: cloud 90s ease-in infinite;
+    -moz-animation: cloud 90s ease-in infinite;
+    background-image: url(images/cloud2.png);
+    height: 80px;
+    left: -165px;
+    top: 50px;
+    width: 160px;
+}
