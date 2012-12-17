@@ -48,6 +48,10 @@ table {
 }
 
 /* Main styles */
+#preload {
+    display: none;
+}
+
 #game-wrapper {
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
@@ -138,41 +142,6 @@ table {
 #robot-bev.on {
     -webkit-animation: walk .5s step-end infinite;
     -moz-animation: walk .5s step-end infinite;
-}
-
-#robot-bev.up {
-    -moz-transform:rotate(180deg);
-    -webkit-transform:rotate(180deg);
-}
-
-#robot-bev.left {
-    -moz-transform:rotate(90deg);
-    -webkit-transform:rotate(90deg);
-}
-
-#robot-bev.up-left {
-    -moz-transform:rotate(135deg);
-    -webkit-transform:rotate(135deg);
-}
-
-#robot-bev.down-left {
-    -moz-transform:rotate(45deg);
-    -webkit-transform:rotate(45deg);
-}
-
-#robot-bev.right {
-    -moz-transform:rotate(-90deg);
-    -webkit-transform:rotate(-90deg);
-}
-
-#robot-bev.up-right {
-    -moz-transform:rotate(-135deg);
-    -webkit-transform:rotate(-135deg);
-}
-
-#robot-bev.down-right {
-    -moz-transform:rotate(-45deg);
-    -webkit-transform:rotate(-45deg);
 }
 
 #robot-bev:hover {

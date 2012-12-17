@@ -12,39 +12,45 @@ define(['jquery', 'trees'],
   var boundaries = {
     all: {
       leftMin: 133,
-      leftMax: 186,
-      topMin: 440,
-      topMax: 460
+      leftMax: 194,
+      topMin: 437,
+      topMax: 460,
+      preLocation: ['tree', 'pond', 'house']
     },
     house: {
       leftMin: 225,
       leftMax: 280,
       topMin: 390,
-      topMax: 440
+      topMax: 440,
+      preLocation: ['all']
     },
     tree1: {
       leftMin: 58,
       leftMax: 111,
       topMin: 208,
-      topMax: 269
+      topMax: 269,
+      preLocation: ['all']
     },
     tree2: {
       leftMin: 155,
       leftMax: 202,
       topMin: 203,
-      topMax: 244
+      topMax: 244,
+      preLocation: ['all']
     },
     tree3: {
       leftMin: 143,
       leftMax: 173,
       topMin: 286,
-      topMax: 321
+      topMax: 321,
+      preLocation: ['all']
     },
     pond: {
       leftMin: 15,
       leftMax: 85,
       topMin: 382,
-      topMax: 446
+      topMax: 446,
+      preLocation: ['all']
     }
   };
 
@@ -91,11 +97,11 @@ define(['jquery', 'trees'],
 
       land.removeClass();
 
-      if (currSeason > 2 && currSeason < 7) {
+      if (currSeason >= 2 && currSeason < 7) {
         land.addClass('spring');
-      } else if (currSeason > 6 && currSeason < 9) {
+      } else if (currSeason >= 6 && currSeason < 9) {
         land.addClass('summer');
-      } else if (currSeason > 8 && currSeason < 11) {
+      } else if (currSeason >= 9 && currSeason < 11) {
         land.addClass('autumn');
       } else {
         land.addClass('winter');
@@ -116,13 +122,15 @@ define(['jquery', 'trees'],
 
     setTarget: function(left, top) {
       // House
-      //console.log(left, top)
+      // console.log(left, top)
 
       for (var key in boundaries) {
         var boundary = boundaries[key];
         if (left > boundary.leftMin && left < boundary.leftMax &&
           top > boundary.topMin && top < boundary.topMax) {
-          loadLocation(key);
+          if (boundary.preLocation.indexOf(currentLocation) > -1) {
+            loadLocation(key);
+          }
         }
       }
     }

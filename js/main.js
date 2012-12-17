@@ -5,13 +5,12 @@ requirejs.config({
   enforceDefine: true
 });
 
-define(['jquery', 'settings'],
-  function($, settings) {
+define(['jquery', 'settings', 'player'],
+  function($, settings, Player) {
 
   var game = $('#game-wrapper');
   var robot = $('#robot-bev');
-
-  var MOVE_SPEED = 3000;
+  var player = new Player(robot);
 
   setTimeout(function() {
     settings.setTimeOfDay();
@@ -42,50 +41,12 @@ define(['jquery', 'settings'],
       }
 
       if (!target.is('#robot-bev')) {
-        var speed = MOVE_SPEED;
-
-        var travelDiffLeft = Math.abs(currLeft - robot.position().left);
-        var travelDiffTop = Math.abs(currTop - robot.position().top);
-
-        if (travelDiffLeft < 100 && travelDiffTop < 100) {
-          speed = MOVE_SPEED / 3;
-        }
-
-        robot.addClass('on');
-
-        if (currTop < robot.position().top) {
-          robot.addClass('up');
-        } else {
-          robot.addClass('down');
-        }
-
-        if (travelDiffLeft > 30 && travelDiffTop > 30) {
-          if (currLeft < robot.position().left && currTop < robot.position().top) {
-            robot.addClass('up-left');
-          } else if (currLeft > robot.position().left && currTop > robot.position().top) {
-            robot.addClass('down-right');
-          } else if (currLeft > robot.position().left && currTop < robot.position().top) {
-            robot.addClass('up-right');
-          } else {
-            robot.addClass('down-left');
-          }
-        }
-
-        if (travelDiffLeft < 30 || travelDiffTop < 30) {
-          if (currLeft < robot.position().left) {
-            robot.addClass('left');
-          } else {
-            robot.addClass('right');
-          }
-        }
-
-        robot.animate({
-          left: (currLeft - 25) + 'px',
-          top: (currTop - 25) + 'px'
-        }, speed, function() {
-          robot.removeClass();
-          settings.setTarget(currLeft, currTop);
+        player.setPosition({
+          currLeft: currLeft,
+          currTop: currTop
         });
+
+        player.setDirection();
       }
     }
   });
