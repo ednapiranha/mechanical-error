@@ -8,7 +8,6 @@ define(['jquery', 'settings'],
 
   var Player = function(robot) {
     this.robot = robot;
-    this.speed = MOVE_SPEED;
   };
 
   Player.prototype.setRotation = function(angle) {
