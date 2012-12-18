@@ -159,6 +159,13 @@ table {
     position: absolute;
 }
 
+.fish {
+    background-image: url(images/fish.png);
+    height: 10px;
+    left: -100px;
+    width: 20px;
+}
+
 .prop {
     z-index: 4;
 }

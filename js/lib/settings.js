@@ -1,7 +1,7 @@
 'use strict';
 
-define(['jquery', 'trees'],
-  function($, trees) {
+define(['jquery', 'trees', 'pond'],
+  function($, trees, pond) {
 
   var land = $('#game-area');
   var timeOfDay = $('#time-of-day');
@@ -78,6 +78,7 @@ define(['jquery', 'trees'],
         land.append(bedEl);
       } else if (location === 'pond') {
         currentLocation = 'pond';
+        pond.generateFish();
         land
           .removeClass()
           .addClass('pond');
@@ -113,7 +114,7 @@ define(['jquery', 'trees'],
 
       timeOfDay.removeClass();
 
-      if (currTime > 16 && currTime < 20) {
+      if (currTime >= 16 && currTime < 20) {
         timeOfDay.addClass('evening');
       } else if ((currTime > 19 && currTime < 24) || (currTime > -1 && currTime < 6)) {
         timeOfDay.addClass('night');

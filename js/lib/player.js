@@ -32,8 +32,7 @@ define(['jquery', 'settings'],
 
     if (this.currTop > this.robot.position().top) {
       travelAngle = Math.atan2(travelDiffTop, travelDiffLeft) * (180 / Math.PI);
-
-      if (travelAngle < 21) {
+      if (travelAngle < 35) {
         if (this.currLeft > this.robot.position().left) {
           this.setRotation(-90);
         } else {
@@ -48,8 +47,7 @@ define(['jquery', 'settings'],
       }
     } else {
       travelAngle = Math.atan2(travelDiffLeft, travelDiffTop) * (180 / Math.PI);
-
-      if (travelAngle < 21) {
+      if (travelAngle < 35) {
         this.setRotation(-180);
       } else {
         if (this.currLeft > this.robot.position().left) {
