@@ -80,26 +80,47 @@ table {
     background-repeat: no-repeat;
     display: none;
     left: 130px;
-    height: 39px;
+    height: 50px;
     position: absolute;
-    top: 430px;
-    width: 70px;
+    top: 427px;
+    width: 50px;
+}
+
+#game-area.tree .cave {
+    background-image: url(images/cave.png);
+    height: 50px;
+    left: 200px;
+    position: absolute;
+    top: 300px;
+    width: 50px;
+    z-index: 2;
 }
 
 #game-area.tree {
     background-image: url(images/tree-internal.jpg);
 }
 
-#game-area.tree .prop, #game-area.house .prop, #game-area.pond .prop {
+#game-area.tree .prop,
+#game-area.house .prop,
+#game-area.pond .prop,
+#game-area.cave .prop,
+#game-area.cave .tree-prop {
     display: none;
 }
 
-#game-area.tree #exit, #game-area.house #exit, #game-area.pond #exit {
+#game-area.tree #exit,
+#game-area.house #exit,
+#game-area.pond #exit,
+#game-area.cave #exit {
     display: block;
 }
 
 #game-area.house {
     background-image: url(images/house-internal.jpg);
+}
+
+#game-area.cave {
+    background-image: url(images/cave-internal.jpg);
 }
 
 #game-wrapper, #game-area {
@@ -164,6 +185,14 @@ table {
     height: 10px;
     left: -100px;
     width: 20px;
+}
+
+.fruit {
+    background-color: transparent;
+    background-image: url(images/fruit.png);
+    height: 15px;
+    width: 15px;
+    z-index: 2;
 }
 
 .bubble {
@@ -393,21 +422,18 @@ table {
     opacity: 0.4;
 }
 
+.cave #time-of-day,
+.pond #time-of-day,
+.tree #time-of-day {
+    display: none;
+}
+
 #game-area.house .bed {
     background-image: url(images/bed1.png);
     height: 87px;
     left: 260px;
     top: 20px;
     width: 56px;
-    z-index: 2;
-}
-
-.fruit {
-    background-color: #f00;
-    border-radius: 100px;
-    box-shadow: #111 1px 1px 4px;
-    height: 20px;
-    width: 20px;
     z-index: 2;
 }
 

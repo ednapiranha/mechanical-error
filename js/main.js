@@ -24,16 +24,16 @@ define(['jquery', 'settings', 'player'],
     var currTop = ev.pageY;
 
     if (!robot.hasClass('on')) {
-      if (currLeft < 0) {
-        currLeft = 0;
+      if (currLeft < 30) {
+        currLeft = 30;
       }
 
       if (currLeft > 290) {
         currLeft = 280;
       }
 
-      if (currTop < 0) {
-        currTop = 0;
+      if (currTop < 30) {
+        currTop = 30;
       }
 
       if (currTop > 450) {

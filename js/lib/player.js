@@ -3,8 +3,7 @@
 define(['jquery', 'settings'],
   function($, settings) {
 
-  var MOVE_SPEED = 3000;
-  var REVERSE_FRAC = 2.15;
+  var MOVE_SPEED = 2500;
 
   var Player = function(robot) {
     this.robot = robot;
@@ -14,6 +13,13 @@ define(['jquery', 'settings'],
     this.robot.css({
       MozTransform: 'rotate(' + angle + 'deg)',
       WebkitTransform: 'rotate(' + angle + 'deg)'
+    });
+  };
+
+  Player.prototype.resetRotation = function() {
+    this.robot.css({
+      MozTransform: 'rotate(0deg)',
+      WebkitTransform: 'rotate(0deg)'
     });
   };
 
@@ -56,10 +62,7 @@ define(['jquery', 'settings'],
       self.robot.removeClass();
 
       settings.setTarget(self.currLeft, self.currTop);
-      self.robot.css({
-        MozTransform: 'rotate(0deg)',
-        WebkitTransform: 'rotate(0deg)'
-      });
+      self.resetRotation();
     });
   };
 
