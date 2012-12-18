@@ -86,10 +86,10 @@ define(['jquery', 'trees', 'pond'],
         currentLocation = 'pond';
         timerFish = setInterval(function() {
           pond.generateFish();
-        }, 500);
+        }, 600);
         timerBubbles = setInterval(function() {
           pond.generateBubbles();
-        }, 1000);
+        }, 900);
         land
           .removeClass()
           .addClass('pond');

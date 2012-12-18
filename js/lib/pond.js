@@ -14,13 +14,13 @@ define(['jquery'],
 
     bubble.animate({
       left: '450px'
-    }, 10000, function() {
+    }, 10500, function() {
       bubble.remove();
     });
   };
 
   var loadFish = function() {
-    var speed = Math.floor(Math.random() * 3000);
+    var speed = Math.floor(Math.random() * 2500);
     var top = Math.floor(Math.random() * 400);
     var fish = $('<div class="pond-prop fish" style="top: ' + top + 'px;"></div>');
     land.append(fish);
