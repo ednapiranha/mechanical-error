@@ -5,6 +5,20 @@ define(['jquery'],
 
   var land = $('#game-area');
 
+  var loadBubbles = function() {
+    var top = Math.floor(Math.random() * 400);
+    var padding = Math.floor(Math.random() * 30);
+    var bubble = $('<div class="pond-prop bubble" style="top: ' + top +
+      'px; padding: ' + padding + 'px;"></div>');
+    land.append(bubble);
+
+    bubble.animate({
+      left: '450px'
+    }, 10000, function() {
+      bubble.remove();
+    });
+  };
+
   var loadFish = function() {
     var speed = Math.floor(Math.random() * 3000);
     var top = Math.floor(Math.random() * 400);
@@ -19,11 +33,18 @@ define(['jquery'],
   };
 
   var self = {
-    generateFish: function(pond) {
+    generateFish: function() {
       loadFish();
       setInterval(function() {
         loadFish();
       }, 500);
+    },
+
+    generateBubbles: function() {
+      loadBubbles();
+      setInterval(function() {
+        loadBubbles();
+      }, 2000);
     }
   };
 

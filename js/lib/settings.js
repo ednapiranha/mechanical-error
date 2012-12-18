@@ -79,6 +79,7 @@ define(['jquery', 'trees', 'pond'],
       } else if (location === 'pond') {
         currentLocation = 'pond';
         pond.generateFish();
+        pond.generateBubbles();
         land
           .removeClass()
           .addClass('pond');
