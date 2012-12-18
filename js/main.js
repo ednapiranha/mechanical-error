@@ -12,7 +12,7 @@ define(['jquery', 'settings', 'player'],
   var robot = $('#robot-bev');
   var player = new Player(robot);
 
-  setTimeout(function() {
+  setInterval(function() {
     settings.setTimeOfDay();
   }, 500000);
   settings.setSeason();

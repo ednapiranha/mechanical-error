@@ -7,6 +7,7 @@ define(['jquery', 'trees', 'pond'],
   var timeOfDay = $('#time-of-day');
   var scene = $('#scene-change');
   var robot = $('#robot-bev');
+  var house = $('.house');
   var currentLocation = 'all';
 
   var boundaries = {
@@ -108,11 +109,11 @@ define(['jquery', 'trees', 'pond'],
 
       land.removeClass();
 
-      if (currSeason >= 2 && currSeason < 7) {
+      if (currSeason >= 1 && currSeason < 6) {
         land.addClass('spring');
-      } else if (currSeason >= 6 && currSeason < 9) {
+      } else if (currSeason >= 5 && currSeason < 8) {
         land.addClass('summer');
-      } else if (currSeason >= 9 && currSeason < 11) {
+      } else if (currSeason >= 8 && currSeason < 11) {
         land.addClass('autumn');
       } else {
         land.addClass('winter');
@@ -126,8 +127,12 @@ define(['jquery', 'trees', 'pond'],
 
       if (currTime >= 16 && currTime < 20) {
         timeOfDay.addClass('evening');
+        house.addClass('night');
       } else if ((currTime > 19 && currTime < 24) || (currTime > -1 && currTime < 6)) {
         timeOfDay.addClass('night');
+        house.addClass('night');
+      } else {
+        house.removeClass('night');
       }
     },
 

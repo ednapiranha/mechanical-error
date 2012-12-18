@@ -253,6 +253,10 @@ table {
     top: 370px;
 }
 
+.house.night {
+    background-image: url(images/house-night.png);
+}
+
 @-webkit-keyframes smoke {
     from {
         left: 272px;
