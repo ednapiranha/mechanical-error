@@ -53,10 +53,10 @@ define(function() {
       preLocation: ['all']
     },
     cave: {
-      leftMin: 215,
-      leftMax: 235,
-      topMin: 315,
-      topMax: 335,
+      leftMin: 210,
+      leftMax: 240,
+      topMin: 310,
+      topMax: 340,
       className: 'cave',
       preLocation: ['cave', 'tree']
     }

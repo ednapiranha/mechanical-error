@@ -1,7 +1,7 @@
 'use strict';
 
-define(['jquery', 'trees', 'pond', 'boundaries'],
-  function($, trees, pond, boundaryItems) {
+define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
+  function($, trees, pond, boundaryItems, cave) {
 
   var land = $('#game-area');
   var timeOfDay = $('#time-of-day');
@@ -14,12 +14,14 @@ define(['jquery', 'trees', 'pond', 'boundaries'],
   var timerFish;
   var timerBubbles;
   var timerFruit;
+  var timerGem;
 
   var unload = function() {
     land.find('.pond-prop, .house-prop, .tree-prop, .cave-prop').remove();
     clearInterval(timerFish);
     clearInterval(timerBubbles);
     clearInterval(timerFruit);
+    clearInterval(timerGem);
   };
 
   var loadSecondaryLocations = function(location) {
@@ -56,6 +58,11 @@ define(['jquery', 'trees', 'pond', 'boundaries'],
           pond.generateBubbles();
         }, 900);
         break;
+
+      case 'cave':
+        timerGem = setInterval(function() {
+          cave.generateGems();
+        }, 800);
     }
   };
 

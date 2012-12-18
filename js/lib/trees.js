@@ -1,7 +1,7 @@
 'use strict';
 
-define(['jquery', 'trees'],
-  function($, trees) {
+define(['jquery'],
+  function($) {
 
   var land = $('#game-area');
 

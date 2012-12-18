@@ -1,7 +1,7 @@
 'use strict';
 
 define(['jquery'],
-  function($s) {
+  function($) {
 
   var land = $('#game-area');
 
