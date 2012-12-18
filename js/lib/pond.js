@@ -35,16 +35,9 @@ define(['jquery'],
   var self = {
     generateFish: function() {
       loadFish();
-      setInterval(function() {
-        loadFish();
-      }, 500);
     },
-
     generateBubbles: function() {
       loadBubbles();
-      setInterval(function() {
-        loadBubbles();
-      }, 2000);
     }
   };
 

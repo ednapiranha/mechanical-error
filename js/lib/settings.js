@@ -54,10 +54,15 @@ define(['jquery', 'trees', 'pond'],
     }
   };
 
+  var timerFish;
+  var timerBubbles;
+
   var loadLocation = function(location) {
     localStorage.setItem('mechanicalError-location', location);
     scene.addClass('on');
     land.find('.pond-prop, .house-prop, .tree-prop').remove();
+    clearInterval(timerFish);
+    clearInterval(timerBubbles);
 
     setTimeout(function() {
       if (location === 'tree1' || location === 'tree2' || location === 'tree3') {
@@ -78,8 +83,12 @@ define(['jquery', 'trees', 'pond'],
         land.append(bedEl);
       } else if (location === 'pond') {
         currentLocation = 'pond';
-        pond.generateFish();
-        pond.generateBubbles();
+        timerFish = setInterval(function() {
+          pond.generateFish();
+        }, 500);
+        timerBubbles = setInterval(function() {
+          pond.generateBubbles();
+        }, 1000);
         land
           .removeClass()
           .addClass('pond');
