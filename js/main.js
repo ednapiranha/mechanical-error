@@ -30,28 +30,28 @@ define(['jquery', 'settings', 'player', 'boundaries'],
         centerPointLeft = Math.abs((Math.abs(currLeft - robot.position().left) / 2) - robot.position().left);
       }
 
-      return centerPointTop > blockProp.topMin &&
-        centerPointTop < blockProp.topMax &&
-        centerPointLeft > blockProp.leftMin &&
-        centerPointLeft < blockProp.leftMax;
+      return centerPointTop >= blockProp.topMin &&
+        centerPointTop <= blockProp.topMax &&
+        centerPointLeft >= blockProp.leftMin &&
+        centerPointLeft <= blockProp.leftMax;
     };
 
     for (var i = 0; i < locations.length; i ++) {
       var blockProp = boundaries[locations[i]];
 
-      if (blockProp.blocker && centerMatched()) {
-        console.log('matched')
-
-        if (currTop >= blockProp.topMax) {
-          currTop = blockProp.topMax;
-        } else if (currTop <= blockProp.topMin) {
+      if (blockProp.blocker && (centerMatched() ||
+        currTop >= blockProp.topMin && currTop <= blockProp.topMax &&
+        currLeft >= blockProp.leftMin && currLeft <= blockProp.leftMax)) {
+        if (currTop > robot.position().top) {
           currTop = blockProp.topMin;
+        } else {
+          currTop = blockProp.topMax;
         }
 
-        if (currLeft <= blockProp.leftMax) {
+        if (currLeft < robot.position().left) {
           currLeft = blockProp.leftMin;
-        } else if (currLeft >= blockProp.leftMin) {
-          currLeft = blockProp.leftMax;
+        } else {
+          currLeft = blockProp.leftMax - (blockProp.leftMax - blockProp.leftMin);
         }
 
         break;
