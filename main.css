@@ -176,7 +176,7 @@ table {
     box-shadow: none;
 }
 
-.prop, .house-prop, .tree-prop, .pond-prop, .cave-prop {
+.prop, .house-prop, .tree-prop, .pond-prop, .cave-prop, .store-prop {
     background-repeat: no-repeat;
     position: absolute;
     z-index: 2;
@@ -468,4 +468,63 @@ table {
 
 #game-area.store {
     background-image: url(images/store-internal.jpg);
+}
+
+@-webkit-keyframes shopkeep {
+    0% {
+        -webkit-transform: rotate(90deg);
+        top: 60px;
+    }
+    33% {
+        -webkit-transform: rotate(180deg);
+        top: 80px;
+    }
+    66% {
+        -webkit-transform: rotate(-90deg);
+        top: 90px;
+    }
+    76% {
+        -webkit-transform: rotate(0deg);
+        top: 100px;
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+        top: 120px;
+    }
+}
+
+@-moz-keyframes shopkeep {
+    0% {
+        -moz-transform: rotate(90deg);
+        top: 60px;
+    }
+    33% {
+        -moz-transform: rotate(180deg);
+        top: 80px;
+    }
+    66% {
+        -moz-transform: rotate(-90deg);
+        top: 90px;
+    }
+    76% {
+        -moz-transform: rotate(0deg);
+        top: 100px;
+    }
+    100% {
+        -moz-transform: rotate(45deg);
+        top: 120px;
+    }
+}
+
+.shopkeep {
+    -webkit-animation: shopkeep 4s ease-in-out -4s infinite alternate;
+    -moz-animation: shopkeep 4s ease-in-out -4s infinite alternate;
+    background-image: url(images/shopkeep.png);
+    border-radius: 100px;
+    box-shadow: #111 1px 1px 3px;
+    height: 31px;
+    left: 280px;
+    top: 50px;
+    width: 31px;
+    z-index: 3;
 }

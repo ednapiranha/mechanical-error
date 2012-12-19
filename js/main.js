@@ -36,15 +36,15 @@ define(['jquery', 'settings', 'player', 'boundaries'],
           if (currLeft >= blockProp.leftMin && currLeft <= blockProp.leftMax &&
             currTop >= blockProp.topMin && currTop <= blockProp.topMax) {
             if (currTop < blockProp.topMax) {
-              currTop = blockProp.topMax + 2;
+              currTop = blockProp.topMax;
             } else if (currTop > blockProp.topMin) {
-              currTop = blockProp.topMin -2;
+              currTop = blockProp.topMin;
             }
 
             if (currLeft < blockProp.leftMax) {
-              currLeft = blockProp.leftMin - 2;
+              currLeft = blockProp.leftMin;
             } else if (currLeft > blockProp.leftMin) {
-              currLeft = blockProp.leftMax + 2;
+              currLeft = blockProp.leftMax;
             }
           }
         }

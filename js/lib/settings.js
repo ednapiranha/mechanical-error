@@ -64,6 +64,11 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         timerGem = setInterval(function() {
           cave.generateGems();
         }, 1300);
+
+      case 'store':
+        var shopkeepEl = $('<div class="store-prop shopkeep"></div>');
+        land.append(shopkeepEl);
+        break;
     }
   };
 
