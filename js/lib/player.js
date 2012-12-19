@@ -45,7 +45,7 @@ define(['jquery', 'settings'],
       travelAngle = travelAngle + 90;
 
       if (this.currLeft > this.robot.position().left) {
-        travelAngle = travelAngle - 180;
+        travelAngle = travelAngle + 90;
       }
     }
 
