@@ -8,14 +8,16 @@ define(function() {
       leftMax: 168,
       topMin: 438,
       topMax: 460,
+      blocker: false,
       className: 'all',
-      preLocation: ['tree', 'pond', 'house', 'cave']
+      preLocation: ['tree', 'pond', 'house', 'cave', 'store']
     },
     house: {
       leftMin: 225,
       leftMax: 280,
       topMin: 390,
       topMax: 440,
+      blocker: false,
       className: 'house',
       preLocation: ['all']
     },
@@ -24,6 +26,7 @@ define(function() {
       leftMax: 111,
       topMin: 208,
       topMax: 269,
+      blocker: false,
       className: 'tree',
       preLocation: ['all']
     },
@@ -32,6 +35,7 @@ define(function() {
       leftMax: 202,
       topMin: 203,
       topMax: 244,
+      blocker: false,
       className: 'tree',
       preLocation: ['all'],
       locations: ['cave']
@@ -41,6 +45,7 @@ define(function() {
       leftMax: 173,
       topMin: 286,
       topMax: 321,
+      blocker: false,
       className: 'tree',
       preLocation: ['all']
     },
@@ -49,6 +54,7 @@ define(function() {
       leftMax: 85,
       topMin: 382,
       topMax: 446,
+      blocker: false,
       className: 'pond',
       preLocation: ['all']
     },
@@ -57,8 +63,28 @@ define(function() {
       leftMax: 240,
       topMin: 310,
       topMax: 340,
+      blocker: false,
       className: 'cave',
       preLocation: ['cave', 'tree']
+    },
+    store: {
+      leftMin: 220,
+      leftMax: 285,
+      topMin: 40,
+      topMax: 115,
+      blocker: false,
+      className: 'store',
+      preLocation: ['all'],
+      locations: ['storeTable']
+    },
+    storeTable: {
+      leftMin: 207,
+      leftMax: 380,
+      topMin: 30,
+      topMax: 190,
+      blocker: true,
+      className: 'goods',
+      preLocation: ['store']
     }
   };
 

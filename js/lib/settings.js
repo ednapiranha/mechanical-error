@@ -29,7 +29,8 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
     if (loc.locations) {
       for (var i = 0; i < loc.locations.length; i ++) {
         if (loc.className) {
-          land.append('<div class=".' + loc.className + '-prop ' + loc.locations[i] + '"></div>');
+          land.append('<div class="' + loc.className +
+            '-prop ' + loc.locations[i] + '"></div>');
         }
       }
     }
@@ -62,18 +63,18 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
       case 'cave':
         timerGem = setInterval(function() {
           cave.generateGems();
-        }, 800);
+        }, 1300);
     }
   };
 
   var loadLocation = function(location) {
     localStorage.setItem('mechanicalError-location', location);
     scene.addClass('on');
-    unload();
 
     currentLocation =  boundaries[location].className;
 
     setTimeout(function() {
+      unload();
       land
         .removeClass()
         .addClass(boundaries[location].className);
@@ -129,7 +130,8 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         var boundary = boundaries[key];
         if (left > boundary.leftMin && left < boundary.leftMax &&
           top > boundary.topMin && top < boundary.topMax) {
-          if (boundary.preLocation.indexOf(currentLocation) > -1) {
+          console.log(boundary.preLocation, currentLocation)
+          if (boundary.preLocation.indexOf(currentLocation) > -1 && !boundary.blocker) {
             loadLocation(key);
           }
         }

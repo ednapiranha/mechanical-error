@@ -9,7 +9,8 @@ define(['jquery'],
     var ttl = Math.floor(Math.random() * 3500);
     var left = Math.floor(Math.random() * 350)
     var top = Math.floor(Math.random() * 400);
-    var fruit = $('<div class="tree-prop fruit" style="top: ' + top + 'px; left: ' + left + 'px;"></div>');
+    var fruit = $('<div class="tree-prop fruit" style="top: ' +
+      top + 'px; left: ' + left + 'px;"></div>');
     land.append(fruit);
 
     fruit.fadeIn(ttl);

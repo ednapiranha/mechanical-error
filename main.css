@@ -104,14 +104,15 @@ table {
 #game-area.house .prop,
 #game-area.pond .prop,
 #game-area.cave .prop,
-#game-area.cave .tree-prop {
+#game-area.store .prop {
     display: none;
 }
 
 #game-area.tree #exit,
 #game-area.house #exit,
 #game-area.pond #exit,
-#game-area.cave #exit {
+#game-area.cave #exit,
+#game-area.store #exit {
     display: block;
 }
 
@@ -196,11 +197,9 @@ table {
 }
 
 .gem {
-    background-color: #00b0f1;
-    border-radius: 100px;
-    box-shadow: #fff 0 0 18px;
-    height: 5px;
-    width: 5px;
+    background-image: url(images/gem.png);
+    height: 20px;
+    width: 10px;
 }
 
 .bubble {
@@ -212,6 +211,14 @@ table {
     left: -100px;
     opacity: 0.3;
     width: 5px;
+}
+
+.store {
+    background-image: url(images/store.png);
+    height: 110px;
+    left: 200px;
+    top: 20px;
+    width: 110px;
 }
 
 .prop {
@@ -432,7 +439,8 @@ table {
 
 .cave #time-of-day,
 .pond #time-of-day,
-.tree #time-of-day {
+.tree #time-of-day,
+.store #time-of-day {
     display: none;
 }
 
@@ -456,4 +464,8 @@ table {
 
 #game-area.pond {
     background-image: url(images/pond-internal.jpg);
+}
+
+#game-area.store {
+    background-image: url(images/store-internal.jpg);
 }

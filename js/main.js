@@ -5,12 +5,14 @@ requirejs.config({
   enforceDefine: true
 });
 
-define(['jquery', 'settings', 'player'],
-  function($, settings, Player) {
+define(['jquery', 'settings', 'player', 'boundaries'],
+  function($, settings, Player, boundaryItems) {
 
   var game = $('#game-wrapper');
   var robot = $('#robot-bev');
   var player = new Player(robot);
+  var boundaries = boundaryItems;
+  localStorage.setItem('mechanicalError-location', 'all');
 
   setInterval(function() {
     settings.setTimeOfDay();
@@ -22,8 +24,20 @@ define(['jquery', 'settings', 'player'],
     var target = $(ev.target);
     var currLeft = ev.pageX;
     var currTop = ev.pageY;
-
+    var currentLocation = localStorage.getItem('mechanicalError-location');
+    var location;
+    console.log(currentLocation)
     if (!robot.hasClass('on')) {
+      location = boundaries[currentLocation].locations;
+
+      if (location) {
+        var blockProp = boundaries[location[0]];
+        if (currLeft > blockProp.leftMin && blockProp.blocker) {
+          currLeft = blockProp.leftMin - 2;
+        }
+      }
+
+
       if (currLeft < 30) {
         currLeft = 30;
       }

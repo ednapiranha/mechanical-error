@@ -6,7 +6,7 @@ define(['jquery'],
   var land = $('#game-area');
 
   var loadGem = function() {
-    var ttl = Math.floor(Math.random() * 3000);
+    var ttl = Math.floor(Math.random() * 2000);
     var left = Math.floor(Math.random() * 350)
     var top = Math.floor(Math.random() * 400);
     var gem = $('<div class="cave-prop gem" style="top: ' + top + 'px; left: ' + left + 'px;"></div>');
