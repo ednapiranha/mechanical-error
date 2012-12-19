@@ -17,7 +17,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
   var timerGem;
 
   var unload = function() {
-    land.find('.pond-prop, .house-prop, .tree-prop, .cave-prop').remove();
+    land.find('.pond-prop, .house-prop, .tree-prop, .cave-prop, .store-prop').remove();
     clearInterval(timerFish);
     clearInterval(timerBubbles);
     clearInterval(timerFruit);
@@ -64,6 +64,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         timerGem = setInterval(function() {
           cave.generateGems();
         }, 1300);
+        break;
 
       case 'store':
         var shopkeepEl = $('<div class="store-prop shopkeep"></div>');
