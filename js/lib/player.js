@@ -37,15 +37,18 @@ define(['jquery', 'settings'],
     var travelDiffTop = Math.abs(this.currTop - this.robot.position().top);
     travelAngle = Math.atan2(travelDiffTop, travelDiffLeft) * (180 / Math.PI) - 90;
 
-    if (this.currLeft < this.robot.position().left) {
-      travelAngle = travelAngle * -1;
-    }
-
+    // going up
     if (this.currTop < this.robot.position().top) {
-      travelAngle = travelAngle + 90;
-
       if (this.currLeft > this.robot.position().left) {
-        travelAngle = travelAngle + 90;
+        travelAngle = travelAngle + 90 * -1;
+      } else {
+        travelAngle = travelAngle - 180;
+      }
+
+    // going down
+    } else {
+      if (this.currLeft < this.robot.position().left) {
+        travelAngle = travelAngle * -1;
       }
     }
 

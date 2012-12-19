@@ -78,13 +78,19 @@ define(function() {
       locations: ['storeTable']
     },
     storeTable: {
-      leftMin: 207,
+      leftMin: 210,
       leftMax: 320,
       topMin: 0,
-      topMax: 220,
+      topMax: 200,
       blocker: true,
       className: 'goods',
-      preLocation: ['store']
+      preLocation: ['store'],
+      clickTarget: {
+        leftMin: 260,
+        leftMax: 320,
+        topMin: 30,
+        topMax: 120
+      }
     }
   };
 
