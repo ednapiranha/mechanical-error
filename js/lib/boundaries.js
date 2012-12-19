@@ -79,9 +79,9 @@ define(function() {
     },
     storeTable: {
       leftMin: 207,
-      leftMax: 380,
-      topMin: 30,
-      topMax: 190,
+      leftMax: 320,
+      topMin: 0,
+      topMax: 220,
       blocker: true,
       className: 'goods',
       preLocation: ['store']

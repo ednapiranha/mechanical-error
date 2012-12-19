@@ -26,17 +26,29 @@ define(['jquery', 'settings', 'player', 'boundaries'],
     var currTop = ev.pageY;
     var currentLocation = localStorage.getItem('mechanicalError-location');
     var location;
-    console.log(currentLocation)
+
     if (!robot.hasClass('on')) {
       location = boundaries[currentLocation].locations;
 
       if (location) {
         var blockProp = boundaries[location[0]];
-        if (currLeft > blockProp.leftMin && blockProp.blocker) {
-          currLeft = blockProp.leftMin - 2;
+        if (blockProp.blocker) {
+          if (currLeft >= blockProp.leftMin && currLeft <= blockProp.leftMax &&
+            currTop >= blockProp.topMin && currTop <= blockProp.topMax) {
+            if (currTop > 0) {
+              currTop = blockProp.topMin - 2;
+            } else if (currTop < 480) {
+              currTop = blockProp.topMax + 2;
+            }
+
+            if (currLeft > 0) {
+              currLeft = blockProp.leftMin - 2;
+            } else if (currLeft < 320) {
+              currLeft = blockProp.leftMax - 2;
+            }
+          }
         }
       }
-
 
       if (currLeft < 30) {
         currLeft = 30;

@@ -130,7 +130,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         var boundary = boundaries[key];
         if (left > boundary.leftMin && left < boundary.leftMax &&
           top > boundary.topMin && top < boundary.topMax) {
-          console.log(boundary.preLocation, currentLocation)
+
           if (boundary.preLocation.indexOf(currentLocation) > -1 && !boundary.blocker) {
             loadLocation(key);
           }
