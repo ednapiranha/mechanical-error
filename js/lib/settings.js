@@ -68,7 +68,8 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
 
       case 'store':
         var shopkeepEl = $('<div class="store-prop shopkeep"></div>');
-        land.append(shopkeepEl);
+        var shopDisplayEl = $('<div class="store-prop table-display"></div>');
+        land.append(shopkeepEl).append(shopDisplayEl);
         break;
     }
   };

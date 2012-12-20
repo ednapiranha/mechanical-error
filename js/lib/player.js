@@ -1,7 +1,9 @@
 'use strict';
 
-define(['jquery', 'settings'],
-  function($, settings) {
+define(['jquery', 'settings', 'boundaries'],
+  function($, settings, boundaryItems) {
+
+  var boundaries = boundaryItems;
 
   var MOVE_SPEED = 2500;
 
@@ -40,9 +42,11 @@ define(['jquery', 'settings'],
     // going up
     if (this.currTop < this.robot.position().top) {
       if (this.currLeft > this.robot.position().left) {
-        travelAngle = travelAngle + 90 * -1;
+        // right
+        travelAngle = travelAngle - 90;
       } else {
-        travelAngle = travelAngle - 180;
+        // left
+        travelAngle = travelAngle + 180 * -1;
       }
 
     // going down
@@ -67,6 +71,82 @@ define(['jquery', 'settings'],
       settings.setTarget(self.currLeft, self.currTop);
       self.resetRotation();
     });
+  };
+
+  var pointMatched = function(robot, currTop, currLeft, blockProp) {
+    var leftPoints = [];
+    var topPoints = [];
+    var pointFoundTop = false;
+    var pointFoundLeft = false;
+
+    var diffTop = Math.abs(currTop - robot.position().top) / 10;
+    var diffLeft = Math.abs(currLeft - robot.position().left) / 10;
+
+    if (currTop > robot.position().top) {
+      for (var y = 1; y < 11; y ++) {
+        topPoints.push(robot.position().top + diffTop * y);
+      }
+    } else {
+      for (var y = 1; y < 11; y ++) {
+        topPoints.push(robot.position().top - diffTop * y);
+      }
+    }
+
+    if (currLeft > robot.position().left) {
+      for (var x = 1; x < 11; x ++) {
+        leftPoints.push(robot.position().left + diffLeft * x);
+      }
+    } else {
+      for (var x = 1; x < 11; x ++) {
+        leftPoints.push(robot.position().left - diffLeft * x);
+      }
+    }
+
+    for (var i = 0; i < topPoints.length; i ++) {
+      if (topPoints[i] >= blockProp.topMin && topPoints[i] <= blockProp.topMax) {
+        pointFoundTop = true;
+        break;
+      }
+    }
+
+    for (var i = 0; i < leftPoints.length; i ++) {
+      if (leftPoints[i] >= blockProp.leftMin && leftPoints[i] <= blockProp.leftMax) {
+        pointFoundLeft = true;
+        break;
+      }
+    }
+
+    return pointFoundTop && pointFoundLeft;
+  };
+
+  Player.prototype.detectBlocker = function(locations, currLeft, currTop) {
+    for (var i = 0; i < locations.length; i ++) {
+      var blockProp = boundaries[locations[i]];
+
+      if (blockProp.blocker && (pointMatched(this.robot, currTop, currLeft, blockProp) ||
+        currTop >= blockProp.topMin && currTop <= blockProp.topMax &&
+        currLeft >= blockProp.leftMin && currLeft <= blockProp.leftMax)) {
+
+        if (currTop > this.robot.position().top) {
+          currTop = blockProp.topMin;
+        } else {
+          currTop = blockProp.topMax;
+        }
+
+        if (currLeft < this.robot.position().left) {
+          currLeft = blockProp.leftMin + (blockProp.leftMax - blockProp.leftMin);
+        } else {
+          currLeft = blockProp.leftMax - (blockProp.leftMax - blockProp.leftMin);
+        }
+
+        break;
+      }
+    }
+
+    return {
+      currLeft: currLeft,
+      currTop: currTop
+    };
   };
 
   return Player;

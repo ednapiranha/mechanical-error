@@ -12,58 +12,6 @@ define(['jquery', 'settings', 'player', 'boundaries'],
   var robot = $('#robot-bev');
   var player = new Player(robot);
   var boundaries = boundaryItems;
-
-  var detectBlocker = function(locations, currLeft, currTop) {
-    var centerPointLeft;
-    var centerPointTop;
-
-    var centerMatched = function() {
-      if (currTop > robot.position().top) {
-        centerPointTop = Math.abs(Math.abs((Math.abs(currTop - robot.position().top) / 2) + robot.position().top));
-      } else {
-        centerPointTop = Math.abs((Math.abs(currTop - robot.position().top) / 2) - robot.position().top);
-      }
-
-      if (currLeft > robot.position().left) {
-        centerPointLeft = Math.abs((Math.abs(currLeft - robot.position().left) / 2) + robot.position().left);
-      } else {
-        centerPointLeft = Math.abs((Math.abs(currLeft - robot.position().left) / 2) - robot.position().left);
-      }
-
-      return centerPointTop >= blockProp.topMin &&
-        centerPointTop <= blockProp.topMax &&
-        centerPointLeft >= blockProp.leftMin &&
-        centerPointLeft <= blockProp.leftMax;
-    };
-
-    for (var i = 0; i < locations.length; i ++) {
-      var blockProp = boundaries[locations[i]];
-
-      if (blockProp.blocker && (centerMatched() ||
-        currTop >= blockProp.topMin && currTop <= blockProp.topMax &&
-        currLeft >= blockProp.leftMin && currLeft <= blockProp.leftMax)) {
-        if (currTop > robot.position().top) {
-          currTop = blockProp.topMin;
-        } else {
-          currTop = blockProp.topMax;
-        }
-
-        if (currLeft < robot.position().left) {
-          currLeft = blockProp.leftMin;
-        } else {
-          currLeft = blockProp.leftMax - (blockProp.leftMax - blockProp.leftMin);
-        }
-
-        break;
-      }
-    }
-
-    return {
-      currLeft: currLeft,
-      currTop: currTop
-    };
-  };
-
   localStorage.setItem('mechanicalError-location', 'all');
 
   setInterval(function() {
@@ -83,7 +31,7 @@ define(['jquery', 'settings', 'player', 'boundaries'],
       locations = boundaries[currentLocation].locations;
 
       if (locations) {
-        var currPositions = detectBlocker(locations, currLeft, currTop);
+        var currPositions = player.detectBlocker(locations, currLeft, currTop);
         currLeft = currPositions.currLeft;
         currTop = currPositions.currTop;
       }
