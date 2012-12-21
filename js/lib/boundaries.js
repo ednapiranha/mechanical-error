@@ -75,16 +75,7 @@ define(function() {
       blocker: false,
       className: 'store',
       preLocation: ['all'],
-      locations: ['storeTable', 'storeDisplay']
-    },
-    storeDisplay: {
-      leftMin: 70,
-      leftMax: 150,
-      topMin: 280,
-      topMax: 335,
-      blocker: true,
-      className: 'store',
-      preLocation: ['store']
+      locations: ['storeTable']
     },
     storeTable: {
       leftMin: 210,

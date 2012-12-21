@@ -46,9 +46,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
 
       case 'house':
         var bed = localStorage.getItem('mechanicalError-bed') || 'bed1';
-        var bedEl = $('<div class="house-prop bed ' + bed + '"></div>');
-
-        land.append(bedEl);
+        land.append('<div class="house-prop bed ' + bed + '"></div>');
         break;
 
       case 'pond':
@@ -67,9 +65,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         break;
 
       case 'store':
-        var shopkeepEl = $('<div class="store-prop shopkeep"></div>');
-        var shopDisplayEl = $('<div class="store-prop table-display"></div>');
-        land.append(shopkeepEl).append(shopDisplayEl);
+        land.append('<div class="store-prop shopkeep"></div>');
         break;
     }
   };

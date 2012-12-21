@@ -528,11 +528,3 @@ table {
     width: 31px;
     z-index: 3;
 }
-
-.table-display {
-    background-image: url(images/table.png);
-    height: 33px;
-    left: 98px;
-    top: 298px;
-    width: 33px;
-}

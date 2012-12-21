@@ -43,10 +43,10 @@ define(['jquery', 'settings', 'boundaries'],
     if (this.currTop < this.robot.position().top) {
       if (this.currLeft > this.robot.position().left) {
         // right
-        travelAngle = travelAngle - 90;
+        travelAngle = travelAngle * -1 + 180;
       } else {
         // left
-        travelAngle = travelAngle + 180 * -1;
+        travelAngle = travelAngle - 180;
       }
 
     // going down
