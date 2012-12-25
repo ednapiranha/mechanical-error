@@ -1,7 +1,7 @@
 'use strict';
 
 define(function() {
-  var LOCATIONS = {
+  var BOUNDARIES = {
     // Default exit location
     all: {
       leftMin: 140,
@@ -84,15 +84,9 @@ define(function() {
       topMax: 200,
       blocker: true,
       className: 'goods',
-      preLocation: ['store'],
-      clickTarget: {
-        leftMin: 260,
-        leftMax: 320,
-        topMin: 30,
-        topMax: 120
-      }
+      preLocation: ['store']
     }
   };
 
-  return LOCATIONS;
+  return BOUNDARIES;
 });

@@ -27,38 +27,41 @@ define(['jquery', 'settings', 'player', 'boundaries'],
     var currentLocation = localStorage.getItem('mechanicalError-location');
     var locations;
 
+    player.setPosition({
+      currLeft: currLeft,
+      currTop: currTop
+    });
+
     if (!robot.hasClass('on')) {
       locations = boundaries[currentLocation].locations;
 
       if (locations) {
-        var currPositions = player.detectBlocker(locations, currLeft, currTop);
-        currLeft = currPositions.currLeft;
-        currTop = currPositions.currTop;
+        player.detectBlocker(locations);
+        console.log('detecting blockers')
       }
 
-      if (currLeft < 30) {
-        currLeft = 30;
+      if (player.currLeft < 30) {
+        player.currLeft = 30;
       }
 
-      if (currLeft > 290) {
-        currLeft = 280;
+      if (player.currLeft > 290) {
+        player.currLeft = 280;
       }
 
-      if (currTop < 30) {
-        currTop = 30;
+      if (player.currTop < 30) {
+        player.currTop = 30;
       }
 
-      if (currTop > 450) {
-        currTop = 440;
+      if (player.currTop > 450) {
+        player.currTop = 440;
       }
 
       if (!target.is('#robot-bev')) {
-        player.setPosition({
-          currLeft: currLeft,
-          currTop: currTop
-        });
-
-        player.setDirection();
+        if (target.is('#shopkeep')) {
+          console('loading shopkeep')
+        } else {
+          player.setDirection();
+        }
       }
     }
   });

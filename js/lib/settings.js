@@ -65,7 +65,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         break;
 
       case 'store':
-        land.append('<div class="store-prop shopkeep"></div>');
+        land.append('<div class="store-prop shopkeep" id="shopkeep"></div>');
         break;
     }
   };

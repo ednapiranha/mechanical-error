@@ -32,31 +32,30 @@ define(['jquery', 'settings', 'boundaries'],
 
   Player.prototype.setDirection = function() {
     var self = this;
-    var travelAngle;
     var speed;
 
     var travelDiffLeft = Math.abs(this.currLeft - this.robot.position().left);
     var travelDiffTop = Math.abs(this.currTop - this.robot.position().top);
-    travelAngle = Math.atan2(travelDiffTop, travelDiffLeft) * (180 / Math.PI) - 90;
+    this.travelAngle = Math.atan2(travelDiffTop, travelDiffLeft) * (180 / Math.PI) - 90;
 
     // going up
     if (this.currTop < this.robot.position().top) {
       if (this.currLeft > this.robot.position().left) {
         // right
-        travelAngle = travelAngle * -1 + 180;
+        this.travelAngle = this.travelAngle * -1 + 180;
       } else {
         // left
-        travelAngle = travelAngle - 180;
+        this.travelAngle = this.travelAngle - 180;
       }
 
     // going down
     } else {
       if (this.currLeft < this.robot.position().left) {
-        travelAngle = travelAngle * -1;
+        this.travelAngle = this.travelAngle * -1;
       }
     }
 
-    this.setRotation(travelAngle);
+    this.setRotation(this.travelAngle);
 
     speed = ((travelDiffLeft * MOVE_SPEED) + (travelDiffTop * MOVE_SPEED)) / 300;
 
@@ -73,32 +72,32 @@ define(['jquery', 'settings', 'boundaries'],
     });
   };
 
-  var pointMatched = function(robot, currTop, currLeft, blockProp) {
+  var pointMatched = function(self, blockProp) {
     var leftPoints = [];
     var topPoints = [];
     var pointFoundTop = false;
     var pointFoundLeft = false;
 
-    var diffTop = Math.abs(currTop - robot.position().top) / 10;
-    var diffLeft = Math.abs(currLeft - robot.position().left) / 10;
+    var diffTop = Math.abs(self.currTop - self.robot.position().top) / 10;
+    var diffLeft = Math.abs(self.currLeft - self.robot.position().left) / 10;
 
-    if (currTop > robot.position().top) {
+    if (self.currTop > self.robot.position().top) {
       for (var y = 1; y < 11; y ++) {
-        topPoints.push(robot.position().top + diffTop * y);
+        topPoints.push(self.robot.position().top + diffTop * y);
       }
     } else {
       for (var y = 1; y < 11; y ++) {
-        topPoints.push(robot.position().top - diffTop * y);
+        topPoints.push(self.robot.position().top - diffTop * y);
       }
     }
 
-    if (currLeft > robot.position().left) {
+    if (self.currLeft > self.robot.position().left) {
       for (var x = 1; x < 11; x ++) {
-        leftPoints.push(robot.position().left + diffLeft * x);
+        leftPoints.push(self.robot.position().left + diffLeft * x);
       }
     } else {
       for (var x = 1; x < 11; x ++) {
-        leftPoints.push(robot.position().left - diffLeft * x);
+        leftPoints.push(self.robot.position().left - diffLeft * x);
       }
     }
 
@@ -119,34 +118,25 @@ define(['jquery', 'settings', 'boundaries'],
     return pointFoundTop && pointFoundLeft;
   };
 
-  Player.prototype.detectBlocker = function(locations, currLeft, currTop) {
+  Player.prototype.detectBlocker = function(locations) {
     for (var i = 0; i < locations.length; i ++) {
       var blockProp = boundaries[locations[i]];
 
-      if (blockProp.blocker && (pointMatched(this.robot, currTop, currLeft, blockProp) ||
-        currTop >= blockProp.topMin && currTop <= blockProp.topMax &&
-        currLeft >= blockProp.leftMin && currLeft <= blockProp.leftMax)) {
+      if (blockProp.blocker && (pointMatched(this, blockProp) ||
+        this.currTop >= blockProp.topMin && this.currTop <= blockProp.topMax &&
+        this.currLeft >= blockProp.leftMin && this.currLeft <= blockProp.leftMax)) {
 
-        if (currTop > this.robot.position().top) {
-          currTop = blockProp.topMin;
+        if (this.currLeft < blockProp.leftMax) {
+          this.currLeft = blockProp.leftMin;
         } else {
-          currTop = blockProp.topMax;
+          this.currLeft = blockProp.leftMax;
         }
 
-        if (currLeft < this.robot.position().left) {
-          currLeft = blockProp.leftMin + (blockProp.leftMax - blockProp.leftMin);
-        } else {
-          currLeft = blockProp.leftMax - (blockProp.leftMax - blockProp.leftMin);
-        }
+        this.currTop = this.robot.position().top;
 
         break;
       }
     }
-
-    return {
-      currLeft: currLeft,
-      currTop: currTop
-    };
   };
 
   return Player;
