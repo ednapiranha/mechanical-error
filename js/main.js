@@ -32,14 +32,7 @@ define(['jquery', 'settings', 'player', 'boundaries'],
       currTop: currTop
     });
 
-    if (!robot.hasClass('on')) {
-      locations = boundaries[currentLocation].locations;
-
-      if (locations) {
-        player.detectBlocker(locations);
-        console.log('detecting blockers')
-      }
-
+    if (!robot.hasClass('on') && !robot.hasClass('active')) {
       if (player.currLeft < 30) {
         player.currLeft = 30;
       }
@@ -55,14 +48,17 @@ define(['jquery', 'settings', 'player', 'boundaries'],
       if (player.currTop > 450) {
         player.currTop = 440;
       }
-
       if (!target.is('#robot-bev')) {
         if (target.is('#shopkeep')) {
-          console('loading shopkeep')
+          $('.shop-actions').fadeIn();
+          player.robot.addClass('active');
         } else {
           player.setDirection();
         }
       }
+    } else if (target.is('#exit-shop')) {
+      $('.shop-actions').fadeOut();
+      player.robot.removeClass('active');
     }
   });
 });

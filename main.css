@@ -96,11 +96,15 @@ table {
     z-index: 2;
 }
 
-#game-area.tree {
+#game-area.tree1,
+#game-area.tree2,
+#game-area.tree3 {
     background-image: url(images/tree-internal.jpg);
 }
 
-#game-area.tree .prop,
+#game-area.tree1 .prop,
+#game-area.tree2 .prop,
+#game-area.tree3 .prop,
 #game-area.house .prop,
 #game-area.pond .prop,
 #game-area.cave .prop,
@@ -108,7 +112,9 @@ table {
     display: none;
 }
 
-#game-area.tree #exit,
+#game-area.tree1 #exit,
+#game-area.tree2 #exit,
+#game-area.tree3 #exit,
 #game-area.house #exit,
 #game-area.pond #exit,
 #game-area.cave #exit,
@@ -439,7 +445,9 @@ table {
 
 .cave #time-of-day,
 .pond #time-of-day,
-.tree #time-of-day,
+.tree1 #time-of-day,
+.tree2 #time-of-day,
+.tree3 #time-of-day,
 .store #time-of-day {
     display: none;
 }
@@ -527,4 +535,24 @@ table {
     top: 50px;
     width: 31px;
     z-index: 3;
+}
+
+.shop-actions {
+    background-color: #111;
+    display: none;
+    height: 415px;
+    opacity: 0.85;
+    padding: 20px;
+    top: 10px;
+    width: 280px;
+    z-index: 4;
+}
+
+#exit-shop {
+    bottom: 10px;
+    color: #fff;
+    font-size: 20px;
+    right: 10px;
+    position: absolute;
+    text-decoration: none;
 }

@@ -17,7 +17,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
   var timerGem;
 
   var unload = function() {
-    land.find('.pond-prop, .house-prop, .tree-prop, .cave-prop, .store-prop').remove();
+    land.find('.pond-prop, .house-prop, .tree1-prop, .tree2-prop, .tree3-prop, .cave-prop, .store-prop').remove();
     clearInterval(timerFish);
     clearInterval(timerBubbles);
     clearInterval(timerFruit);
@@ -38,7 +38,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
 
   var loadDetailContent = function(location) {
     switch (location) {
-      case 'tree':
+      case 'tree1' || 'tree2' || 'tree3':
         timerFruit = setInterval(function() {
           trees.generateFruit();
         }, 1500);
@@ -65,7 +65,9 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         break;
 
       case 'store':
-        land.append('<div class="store-prop shopkeep" id="shopkeep"></div>');
+        land
+          .append('<div class="store-prop shopkeep" id="shopkeep"></div>')
+          .append('<div class="store-prop shop-actions"><a href="javascript:;" id="exit-shop">x</a></div>');
         break;
     }
   };
@@ -134,7 +136,7 @@ define(['jquery', 'trees', 'pond', 'boundaries', 'cave'],
         if (left > boundary.leftMin && left < boundary.leftMax &&
           top > boundary.topMin && top < boundary.topMax) {
 
-          if (boundary.preLocation.indexOf(currentLocation) > -1 && !boundary.blocker) {
+          if (boundary.preLocation.indexOf(currentLocation) > -1) {
             loadLocation(key);
           }
         }
